@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Arushi ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(270deg, #ff9a9e, #fad0c4);
+    background-size: 400% 400%;
+    animation: bg 10s infinite;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+@keyframes bg {
+    0% {background-position: 0%;}
+    100% {background-position: 100%;}
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+}
+
+#text {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    min-height: 120px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: red;
+    transform: rotate(45deg);
+    animation: float 6s linear infinite;
+}
+
+.heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before { top: -7px; }
+.heart::after { left: -7px; }
+
+@keyframes float {
+    0% {bottom: -20px; opacity: 1;}
+    100% {bottom: 100%; opacity: 0;}
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 20px;
+    transition: 0.4s;
+    z-index: 10;
+}
+
+.popup.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Game buttons */
+#noBtn {
+    position: absolute;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>For Arushi ❤️</h1>
+    <div id="text"></div>
+
+    <h3>Do you love me? 😏</h3>
+    <button onclick="yesClicked()">Yes 💖</button>
+    <button id="noBtn">No 😈</button>
+
+    <br>
+    <button onclick="openPopup()">Open Surprise 🎁</button>
+</div>
+
+<div class="popup" id="popup">
+    <h2>I love you, wifey ❤️💍</h2>
+    <p>You mean everything to me 😭💖</p>
+    <button onclick="closePopup()">Close</button>
+</div>
+
+<audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
+</audio>
+
+<script>
+// Typing effect
+const msg = `Hey Arushi 💖
+
+You came into my life and made everything beautiful.
+
+Your smile = my happiness 😊
+Your voice = my peace 💫
+
+I love you more than words can say...
+
+— Yours forever, Swajit 💌`;
+
+let i = 0;
+function type() {
+    if (i < msg.length) {
+        document.getElementById("text").innerHTML += msg.charAt(i);
+        i++;
+        setTimeout(type, 40);
+    }
+}
+type();
+
+// Hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 300);
+
+// No button moves 😏
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * window.innerWidth + "px";
+    noBtn.style.top = Math.random() * window.innerHeight + "px";
+});
+
+// Yes clicked
+function yesClicked() {
+    alert("I knew it 😍❤️ I love you sooo much!!");
+    document.getElementById("music").play();
+}
+
+// Popup
+function openPopup() {
+    document.getElementById("popup").classList.add("active");
+    document.getElementById("music").play();
+}
+
+function closePopup() {
+    document.getElementById("popup").classList.remove("active");
+}
+</script>
+
+</body>
+</html>
